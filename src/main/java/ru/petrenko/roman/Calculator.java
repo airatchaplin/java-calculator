@@ -1,3 +1,7 @@
+package ru.petrenko.roman;
+
+import org.apache.commons.math3.util.Precision;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +21,7 @@ public class Calculator {
         OPERATION_PRIORITY.put("/", 2);
     }
 
-    double calculations(List<String> expressionList) {
+    double calculate(List<String> expressionList) {
         Stack<Double> operandsStack = new Stack<>();
         Stack<String> operationStack = new Stack<>();
 
@@ -47,7 +51,8 @@ public class Calculator {
             popOperandsPushResultMathOperation(operandsStack, operationStack);
         }
 
-        return operandsStack.pop();
+
+        return Precision.round(operandsStack.pop(), 2);
     }
 
     private void popOperandsPushResultMathOperation(Stack<Double> operandsStack, Stack<String> operationStack) {

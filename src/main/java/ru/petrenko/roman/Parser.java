@@ -1,9 +1,11 @@
+package ru.petrenko.roman;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParsingWithRegEx {
+public class Parser {
 
     List<String> parse(String expression) {
         List<String> expressionList = new ArrayList<>();

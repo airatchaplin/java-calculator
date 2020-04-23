@@ -1,3 +1,5 @@
+package ru.petrenko.roman;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,19 +10,24 @@ public class Validator {
         Pattern patternOperatorDuplication = Pattern.compile("[" + getOperatorsRegEx() + "]" +
                 "[" + getOperatorsRegEx() + ")]");
         Matcher matcherOperatorDuplication = patternOperatorDuplication.matcher(expression);
-        Pattern patternOperatorEndExpression = Pattern.compile("[" + getOperatorsRegEx() + "]$");
-        Matcher matcherOperatorEndExpression = patternOperatorEndExpression.matcher(expression);
+        Pattern patternOperatorStartOrEndExpression = Pattern.compile("^[" + getOperatorsRegEx() + "]" +
+                "|[" + getOperatorsRegEx() + "]$");
+        Matcher matcherOperatorEndExpression = patternOperatorStartOrEndExpression.matcher(expression);
         Pattern patternOperatorOperand = Pattern.compile("[^\\d" + getOperatorsRegEx() + ".()]");
         Matcher matcherOperatorOperand = patternOperatorOperand.matcher(expression);
 
         if (matcherOperatorOperand.find()) {
             throw new IllegalArgumentException("Введены недопустимые значения!" +
-                    " В выражении могу содержатся только цифры и знаки математических действий! ");
-        } else if (matcherOperatorEndExpression.find() ||
-                matcherOperatorDuplication.find() ||
-                !checkBrackets(expression)) {
+                    " В выражении могут содержатся только цифры и знаки математических действий! ");
+        }
+        if (matcherOperatorEndExpression.find() ||
+                matcherOperatorDuplication.find()) {
             throw new IllegalArgumentException("Введены недопустимые значения!" +
                     " Провертье правильность расположения операторов! ");
+        }
+        if (!checkBrackets(expression)) {
+            throw new IllegalArgumentException("Введены недопустимые значения!" +
+                    " Провертье правильность расположения скобок! ");
         }
 
         return true;
