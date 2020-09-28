@@ -1,4 +1,4 @@
-package ru.petrenko.roman;
+package ru.petrenko.roman.service;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class Console {
         return expression;
     }
 
-    void printResult(double result) {
+    public void printResult(double result) {
         System.out.println("Результат выражения: " + result);
     }
 }

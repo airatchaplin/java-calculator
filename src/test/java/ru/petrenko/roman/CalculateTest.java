@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.petrenko.roman.service.Calculate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,12 +15,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class CalculatorTest {
-    private static Calculator calculator;
+class CalculateTest {
+    private static Calculate calculator;
 
     @BeforeAll
     static void setup() {
-        calculator = new Calculator();
+        calculator = new Calculate();
     }
 
     @Nested

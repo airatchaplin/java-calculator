@@ -1,11 +1,13 @@
-package ru.petrenko.roman;
+package ru.petrenko.roman.service;
+
+import ru.petrenko.roman.service.Calculate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
 
-    static boolean isValid(String expression) {
+    public static boolean isValid(String expression) {
 
         Pattern patternOperatorDuplication = Pattern.compile("[" + getOperatorsRegEx() + "]" +
                 "[" + getOperatorsRegEx() + ")]");
@@ -33,7 +35,7 @@ public class Validator {
         return true;
     }
 
-    static private boolean checkBrackets(String expression) {
+    private static boolean checkBrackets(String expression) {
         expression = expression.replaceAll("[^()]", "");
 
         while (expression.contains("(") && expression.contains(")")) {
@@ -43,10 +45,10 @@ public class Validator {
         return expression.isEmpty();
     }
 
-    static private String getOperatorsRegEx() {
+    private static String getOperatorsRegEx() {
         StringBuilder operators = new StringBuilder();
 
-        for (String value : Calculator.OPERATION_PRIORITY.keySet()) {
+        for (String value : Calculate.OPERATION_PRIORITY.keySet()) {
             if (!value.equals("(") && !value.equals(")")) {
                 operators.append("\\").append(value);
             }

@@ -1,4 +1,4 @@
-package ru.petrenko.roman;
+package ru.petrenko.roman.service;
 
 import org.apache.commons.math3.util.Precision;
 
@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-public class Calculator {
+public class Calculate {
 
-    final static Map<String, Integer> OPERATION_PRIORITY;
+    static final Map<String, Integer> OPERATION_PRIORITY;
 
     static {
         OPERATION_PRIORITY = new HashMap<>();
@@ -21,7 +21,7 @@ public class Calculator {
         OPERATION_PRIORITY.put("/", 2);
     }
 
-    double calculate(List<String> expressionList) {
+    public double calculate(List<String> expressionList) {
         Stack<Double> operandsStack = new Stack<>();
         Stack<String> operationStack = new Stack<>();
 
