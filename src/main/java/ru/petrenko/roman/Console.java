@@ -1,13 +1,15 @@
+package ru.petrenko.roman;
+
 import java.util.Scanner;
 
 public class Console {
 
     public String readExpression() {
         System.out.println("Введите выражение, которое нужно высчитать: ");
-        return handleString(new Scanner(System.in).nextLine());
+        return new Scanner(System.in).nextLine();
     }
 
-    private String handleString(String expression) {
+    public String handleString(String expression) {
         if (expression.isEmpty()) {
             throw new IllegalArgumentException("Передано пустое выражение!");
         }
@@ -18,6 +20,6 @@ public class Console {
     }
 
     void printResult(double result) {
-        System.out.println("Результат выражения: " + String.format("%.2f", result));
+        System.out.println("Результат выражения: " + result);
     }
 }
